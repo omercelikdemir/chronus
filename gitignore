@@ -1,0 +1,48 @@
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+#IDE files
+*.iml
+.idea/
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# System files
+.DS_Store
+
+# Maven build folder
+target
+
+# image folder
+build/images
+
+*.log
+*.ipr
+*.iws
+*.classes
+#*.sh
+.classpath
+.project
+.settings
+context.xml
+release.properties
+pom.xml.releaseBackup
+nbproject
+jboss-web.xml
+e2e/
+src/assets/
+src/environments/
+src/favicon.ico
+src/index.html
+src/main.ts
+src/polyfills.ts
+src/test.ts
+src/tsconfig.json
