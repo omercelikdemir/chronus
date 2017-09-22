@@ -9,7 +9,7 @@ import java.util.Objects;
  */
 @Entity
 @NamedQueries(value = {
-        @NamedQuery(name = "planning.reservation.forCustomer", query = "select r from Reservation r where r.customer = :customer")
+        @NamedQuery(name = "reservation.from", query = "select r from Reservation r where r.date >= :date")
 }
 )
 
@@ -21,6 +21,7 @@ public class Reservation {
     private String customer;
     private double qty;
     private Date date;
+    private Date orderDate;
 
     public long getCode() {
         return code;
@@ -62,6 +63,14 @@ public class Reservation {
         this.date = date;
     }
 
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -71,11 +80,12 @@ public class Reservation {
                 Double.compare(that.qty, qty) == 0 &&
                 Objects.equals(product, that.product) &&
                 Objects.equals(customer, that.customer) &&
-                Objects.equals(date, that.date);
+                Objects.equals(date, that.date) &&
+                Objects.equals(orderDate, that.orderDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(code, product, customer, qty, date);
+        return Objects.hash(code, product, customer, qty, date, orderDate);
     }
 }

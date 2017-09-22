@@ -4,7 +4,9 @@ import net.novalab.reservation.entity.Reservation;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.List;
+import java.util.*;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 /**
  * Created by Omer on 24.8.2017.
@@ -18,7 +20,10 @@ public class ReservationFinder {
         return em.find(Reservation.class, code);
     }
 
-    public List<Reservation> getAllReservationsFor(String customer) {
-        return em.createNamedQuery("planning.reservation.forCustomer", Reservation.class).setParameter("customer", customer).getResultList();
+
+    public NavigableSet<Reservation> getReservations() {
+        Supplier<TreeSet<Reservation>> supplier = () -> new TreeSet<>(Comparator.comparing(Reservation::getOrderDate).thenComparing(Reservation::getCode));
+        return em.createNamedQuery("reservation.from", Reservation.class).setParameter("name", new Date())
+                .getResultList().stream().collect(Collectors.toCollection(supplier));
     }
 }

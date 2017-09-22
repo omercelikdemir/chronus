@@ -1,6 +1,7 @@
 package net.novalab.reservation.control;
 
-import net.novalab.reservation.entity.ReservationEnquery;
+import net.novalab.allocatablecapacity.control.Allocatable;
+import net.novalab.allocatablecapacity.entity.AllocatableCapacity;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -15,27 +16,15 @@ public class ReservationHandler {
 
 
     @Inject
-    private ReservationEnquirer reservationEnquirer;
+    private Allocatable allocatable;
 
     @PersistenceContext
     private EntityManager em;
 
-    public ReservationEnquery enquire(String product, double qty) {
-        ReservationEnquery reservationEnquery = reservationEnquirer.enquire(product, qty);
-        return reservationEnquery;
+    public AllocatableCapacity find(String product, double qty) {
+        return allocatable.findAllocatableCapacity(product, qty);
     }
 
 
-    public void confirm() {
-       /* List<Reservation> reservations = reservationEnquiryContext.getReservationEnquery().getDateQtyMap().entrySet().stream().map(e -> {
-            Reservation reservation = new Reservation();
-            reservation.setCustomer(context.getCustomer().getCode());
-            reservation.setProduct(reservationEnquiryContext.getReservationEnquery().getProduct().getCode());
-            reservation.setDate(e.getKey());
-            reservation.setQty(e.getValue());
-            return reservation;
-        }).collect(Collectors.toList());
-        reservations.forEach(r -> em.merge(r));*/
-    }
 
 }

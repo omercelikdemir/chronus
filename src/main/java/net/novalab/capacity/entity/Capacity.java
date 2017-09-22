@@ -1,21 +1,22 @@
 package net.novalab.capacity.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
 public class Capacity {
 
-    private int numberOfDays;
+    @Id
+    private String factory;
     private long duration;
 
-
-    public int getNumberOfDays() {
-        return numberOfDays;
+    public String getFactory() {
+        return factory;
     }
 
-    public void setNumberOfDays(int numberOfDays) {
-        this.numberOfDays = numberOfDays;
+    public void setFactory(String factory) {
+        this.factory = factory;
     }
 
     public long getDuration() {
@@ -26,17 +27,18 @@ public class Capacity {
         this.duration = duration;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Capacity capacity = (Capacity) o;
-        return numberOfDays == capacity.numberOfDays &&
-                duration == capacity.duration;
+        return duration == capacity.duration &&
+                Objects.equals(factory, capacity.factory);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(numberOfDays, duration);
+        return Objects.hash(factory, duration);
     }
 }
