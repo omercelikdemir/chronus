@@ -20,12 +20,12 @@ public class AllocatableCapacityFinder implements Allocatable {
     @Inject
     ProductFinder productFinder;
 
-    public AllocatableCapacity findAllocatableCapacity(String productCode, double quantity) {
+    public AllocatableCapacity findAllocatableCapacity(String factory, String productCode, double quantity) {
         Capacity capacity = capacityFinder.findCapacity();
         Product product = productFinder.findProduct(productCode);
         double holdingCapacity = quantity / product.getCapacity();
 
-        reservationFinder.getReservations().stream().sorted(Comparator.comparing(Reservation::getDate).thenComparing(Reservation::getCode));
+        reservationFinder.getReservations(factory).stream().sorted(Comparator.comparing(Reservation::getDate).thenComparing(Reservation::getCode));
         return null;
     }
 }

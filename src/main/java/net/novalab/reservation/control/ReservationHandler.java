@@ -21,8 +21,9 @@ public class ReservationHandler {
     @PersistenceContext
     private EntityManager em;
 
-    public AllocatableCapacity find(String product, double qty) {
-        return allocatable.findAllocatableCapacity(product, qty);
+    public Object find(String factory, String product, double qty) {
+        AllocatableCapacity allocatableCapacity = allocatable.findAllocatableCapacity(factory, product, qty);
+        return null;
     }
 
 

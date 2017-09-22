@@ -21,9 +21,9 @@ public class ReservationFinder {
     }
 
 
-    public NavigableSet<Reservation> getReservations() {
+    public NavigableSet<Reservation> getReservations(String factory) {
         Supplier<TreeSet<Reservation>> supplier = () -> new TreeSet<>(Comparator.comparing(Reservation::getOrderDate).thenComparing(Reservation::getCode));
-        return em.createNamedQuery("reservation.from", Reservation.class).setParameter("name", new Date())
+        return em.createNamedQuery("reservation.from", Reservation.class).setParameter("date", new Date()).setParameter("factory", factory)
                 .getResultList().stream().collect(Collectors.toCollection(supplier));
     }
 }

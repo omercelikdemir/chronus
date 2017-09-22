@@ -21,8 +21,8 @@ public class CustomerFilter implements Allocatable {
     private Allocatable allocatable;
 
     @Override
-    public AllocatableCapacity findAllocatableCapacity(String productCode, double quantity) {
-        AllocatableCapacity allocatableCapacity = allocatable.findAllocatableCapacity(productCode, quantity);
+    public AllocatableCapacity findAllocatableCapacity(String factory, String productCode, double quantity) {
+        AllocatableCapacity allocatableCapacity = allocatable.findAllocatableCapacity(factory, productCode, quantity);
         // do stuff
         return allocatableCapacity;
     }

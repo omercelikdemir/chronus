@@ -4,5 +4,5 @@ import net.novalab.allocatablecapacity.entity.AllocatableCapacity;
 
 public interface Allocatable  {
 
-    AllocatableCapacity findAllocatableCapacity(String productCode, double quantity);
+    AllocatableCapacity findAllocatableCapacity(String factory, String productCode, double quantity);
 }
