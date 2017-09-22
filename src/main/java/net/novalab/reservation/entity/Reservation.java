@@ -1,6 +1,9 @@
 package net.novalab.reservation.entity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import java.util.Date;
 import java.util.Objects;
 
