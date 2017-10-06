@@ -1,7 +1,7 @@
 package net.novalab.filters.control;
 
-import net.novalab.allocatablecapacity.control.Allocatable;
-import net.novalab.allocatablecapacity.entity.AllocatableCapacity;
+import net.novalab.allocation.control.Allocatable;
+import net.novalab.allocation.entity.AllocationProposal;
 import net.novalab.filters.entity.Constraint;
 
 import javax.annotation.Priority;
@@ -11,7 +11,7 @@ import javax.inject.Inject;
 
 @Priority(1)
 @Decorator
-public class CustomerFilter implements Allocatable {
+public class CustomerFilter implements Allocatable{
 
     @Inject
     private Constraint constraint;
@@ -21,9 +21,8 @@ public class CustomerFilter implements Allocatable {
     private Allocatable allocatable;
 
     @Override
-    public AllocatableCapacity findAllocatableCapacity(String factory, String productCode, double quantity) {
-        AllocatableCapacity allocatableCapacity = allocatable.findAllocatableCapacity(factory, productCode, quantity);
-        // do stuff
-        return allocatableCapacity;
+    public AllocationProposal allocate(String product, double quantity) {
+        // do some filtering stuff
+        return null;
     }
 }

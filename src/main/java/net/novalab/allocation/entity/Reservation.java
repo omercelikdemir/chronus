@@ -1,4 +1,4 @@
-package net.novalab.reservation.entity;
+package net.novalab.allocation.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,7 +12,7 @@ import java.util.Objects;
  */
 @Entity
 @NamedQueries(value = {
-        @NamedQuery(name = "reservation.from", query = "select r from Reservation r where r.date >= :date and r.factory = :factory")
+        @NamedQuery(name = "reservation.from", query = "select r from Reservation r where r.date >= :date and r.source = :factory")
 }
 )
 
@@ -22,7 +22,7 @@ public class Reservation {
     private long code;
     private String product;
     private String customer;
-    private String factory;
+    private String source;
     private double qty;
     private Date date;
     private Date orderDate;
@@ -51,12 +51,12 @@ public class Reservation {
         this.customer = customer;
     }
 
-    public String getFactory() {
-        return factory;
+    public String getSource() {
+        return source;
     }
 
-    public void setFactory(String factory) {
-        this.factory = factory;
+    public void setSource(String source) {
+        this.source = source;
     }
 
     public double getQty() {
@@ -92,13 +92,13 @@ public class Reservation {
                 Double.compare(that.qty, qty) == 0 &&
                 Objects.equals(product, that.product) &&
                 Objects.equals(customer, that.customer) &&
-                Objects.equals(factory, that.factory) &&
+                Objects.equals(source, that.source) &&
                 Objects.equals(date, that.date) &&
                 Objects.equals(orderDate, that.orderDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(code, product, customer, factory, qty, date, orderDate);
+        return Objects.hash(code, product, customer, source, qty, date, orderDate);
     }
 }
